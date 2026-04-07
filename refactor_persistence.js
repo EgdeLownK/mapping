@@ -13,15 +13,12 @@ var DEFAULT_DATA={
   core_architecture: {
     itemTypes: JSON.parse(JSON.stringify(DEFAULT_ITEM_TYPES)),
     relationTypes: [
-      { "type": "nav_cta", "label": "CTA / Bouton principal", "color": "#3B82F6" },
-      { "type": "nav_link", "label": "Clic lien texte", "color": "#64748B" },
-      { "type": "nav_tab", "label": "Sélection onglet", "color": "#8B5CF6" },
-      { "type": "nav_menu", "label": "Clic menu latéral", "color": "#10B981" },
-      { "type": "nav_redirect", "label": "Redirection automatique", "color": "#F59E0B" },
-      { "type": "auth_success", "label": "Auth réussie", "color": "#22C55E" },
-      { "type": "auth_submit", "label": "Soumission formulaire", "color": "#F97316" },
-      { "type": "open_overlay", "label": "Ouverture overlay", "color": "#EC4899" },
-      { "type": "open_tab", "label": "Affichage sous-composant", "color": "#D946EF" }
+      { "type": "Change", "label": "Changement de page", "color": "#3B82F6" },
+      { "type": "Switch", "label": "switch menu", "color": "#64748B" },
+      { "type": "Open overlay", "label": "Ouvre overlay", "color": "#8B5CF6" },
+      { "type": "Redirection", "label": "Redirection", "color": "#10B981" },
+      { "type": "Redirection auto", "label": "Redirection automatique", "color": "#10B981" },
+      { "type": "Submit", "label": "Envoie de données", "color": "#F59E0B" }
     ],
     pages: [
       {id:"page_vitrine",title:"Vitrine Publique"},
