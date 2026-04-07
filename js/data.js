@@ -398,13 +398,18 @@ A.exportAI=function(){
     };
     if(n.page&&pagesById[n.page])obj.page=pagesById[n.page];
     if(parentMap[n.id])obj.parent=parentMap[n.id];
+    if(n.modes&&n.modes.length)obj.modes=n.modes;
+    if(n.default_mode)obj.default_mode=n.default_mode;
+    if(n.section_role)obj.section_role=n.section_role;
     obj.elements=(n.items||[])
       .filter(function(it){return it.t!=='h3';})
       .map(function(it){
-        return{
+        var el={
           type:it.t.replace(/^\+/,''),
           name:it.n
         };
+        if(it.visible_in_modes&&it.visible_in_modes.length)el.visible_in_modes=it.visible_in_modes;
+        return el;
       });
     return obj;
   });
@@ -425,6 +430,18 @@ A.exportAI=function(){
 
   var aiExport={
     _description:'Architecture export — optimized for AI. No visual/positional data. Components describe UI screens and their elements. Flows describe navigation triggers between components.',
+    _glossary:{
+      modes:"Un composant peut avoir plusieurs modes d'affichage (par exemple 'view' pour la consultation et 'edit' pour l'édition). Le mode actif détermine quels éléments du composant sont visibles. Voir le champ visible_in_modes sur les éléments.",
+      default_mode:"Le mode dans lequel le composant est rendu par défaut lors de son premier affichage.",
+      section_role:"Désigne le rôle fonctionnel d'une section du profil Agora. 'conversion' = sections orientées action commerciale (Shop, Agenda, Événement), affichées en priorité sur Accueil. 'content' = sections de contenu récurrent (News, Vidéos), affichées après les sections de conversion. 'identity' = sections de présentation (Histoire, Portfolio), affichées en dernier.",
+      visible_in_modes:"Liste des modes du composant parent dans lesquels cet élément est visible. Si absent, l'élément est visible dans tous les modes."
+    },
+    _conventions:[
+      "Sur le profil public d'Agora, l'ordre d'affichage des sections est : sections de rôle 'conversion' d'abord, puis 'content', puis 'identity'. Cet ordre n'est pas modifiable par l'utilisateur.",
+      "Une section peut être publiée ou dépubliée sans perdre son contenu. La dépublication la rend invisible aux visiteurs mais ne supprime aucune donnée.",
+      "Le profil et son interface d'édition partagent le même rendu visuel de fond. Les éléments d'édition (boutons modifier, bordures de survol) sont visibles uniquement quand le mode actif est 'edit'.",
+      "Les éléments sans visible_in_modes sont visibles dans tous les modes du composant parent."
+    ],
     element_types:elementTypes,
     interaction_types:interactionTypes,
     pages:(ca.pages||[]).map(function(p){return{id:p.id,name:p.title};}),
