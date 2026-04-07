@@ -1,0 +1,1255 @@
+{
+  "core_architecture": {
+    "itemTypes": [
+      {
+        "category": "Nav",
+        "color": "#0084ff",
+        "description": "Tout ce qui déplace l'utilisateur (Lien, Onglet, Redirection)",
+        "items": [
+          {
+            "tag": "Link",
+            "label": "Lien"
+          },
+          {
+            "tag": "Tab",
+            "label": "Onglet"
+          },
+          {
+            "tag": "Redirect",
+            "label": "Redirection"
+          }
+        ]
+      },
+      {
+        "category": "Action",
+        "color": "#ff0000",
+        "description": "Tout ce qui modifie la base de données (Bouton de paiement, Créer, Supprimer, Valider)",
+        "items": [
+          {
+            "tag": "CTA",
+            "label": "Bouton CTA"
+          },
+          {
+            "tag": "Toggle",
+            "label": "Toggle / Switch"
+          },
+          {
+            "tag": "Action",
+            "label": "Action / Navigation"
+          },
+          {
+            "tag": "Auth",
+            "label": "SSO / Auth"
+          }
+        ]
+      },
+      {
+        "category": "Saisie",
+        "color": "#ff7300",
+        "description": "Tout ce qui récolte de la donnée (Input, Formulaire, Upload)",
+        "items": [
+          {
+            "tag": "Input",
+            "label": "Champ texte"
+          },
+          {
+            "tag": "Select",
+            "label": "Sélecteur"
+          },
+          {
+            "tag": "Form",
+            "label": "Formulaire"
+          },
+          {
+            "tag": "Upload",
+            "label": "Upload fichier"
+          },
+          {
+            "tag": "Consent",
+            "label": "Consentement"
+          }
+        ]
+      },
+      {
+        "category": "Vue",
+        "color": "#94a3b8",
+        "description": "Tout ce qui affiche de la donnée statique ou dynamique (Tableau de bord, Liste, Texte, Vidéo)",
+        "items": [
+          {
+            "tag": "Text",
+            "label": "Texte statique"
+          },
+          {
+            "tag": "Media",
+            "label": "Média"
+          },
+          {
+            "tag": "List",
+            "label": "Liste"
+          },
+          {
+            "tag": "Widget",
+            "label": "Widget"
+          },
+          {
+            "tag": "calendrier",
+            "label": "Calendrier"
+          },
+          {
+            "tag": "vidéo",
+            "label": "Vidéo"
+          },
+          {
+            "tag": "icone",
+            "label": "Icône"
+          },
+          {
+            "tag": "Tableau",
+            "label": "Tableau"
+          },
+          {
+            "tag": "content",
+            "label": "Contenu mixte"
+          }
+        ]
+      },
+      {
+        "category": "Overlay",
+        "color": "#e100ff",
+        "description": "Tout ce qui ouvre une vue temporaire (Modale, Tiroir, Menu déroulant)",
+        "items": [
+          {
+            "tag": "Action Overlay",
+            "label": "Modale / Overlay"
+          },
+          {
+            "tag": "Info",
+            "label": "Info"
+          }
+        ]
+      },
+      {
+        "category": "Relation",
+        "color": "#6366f1",
+        "description": "Tout ce qui est en rapport avec les relations",
+        "items": []
+      }
+    ],
+    "pages": [
+      {
+        "id": "page_vitrine",
+        "title": "1. VITRINE PUBLIQUE",
+        "color": "#3b82f6"
+      },
+      {
+        "id": "page_auth",
+        "title": "2. PORTAIL AUTHENTIFICATION",
+        "color": "#8b5cf6"
+      },
+      {
+        "id": "page_workspace",
+        "title": "3. PORTAIL",
+        "color": "#10b981"
+      }
+    ],
+    "nodes": [
+      {
+        "id": "nav_public",
+        "title": "Sidebar Publique",
+        "category": "Composant",
+        "page": "page_vitrine",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_nav_public_0",
+            "t": "h3",
+            "n": "MENU LATÉRAL"
+          },
+          {
+            "itemId": "itm_nav_public_1",
+            "t": "Action Overlay",
+            "n": "Toggle Collapse"
+          },
+          {
+            "itemId": "itm_nav_public_2",
+            "t": "Link",
+            "n": "Logo 'Agora' (Accueil)"
+          },
+          {
+            "itemId": "itm_nav_public_3",
+            "t": "Input",
+            "n": "Recherche publique"
+          },
+          {
+            "itemId": "itm_nav_public_4",
+            "t": "Action",
+            "n": "CTA 'Créer mon espace'"
+          },
+          {
+            "itemId": "itm_nav_public_5",
+            "t": "Action",
+            "n": "CTA 'Se connecter'"
+          },
+          {
+            "itemId": "itm_nav_public_6",
+            "t": "h3",
+            "n": "FOOTER"
+          },
+          {
+            "itemId": "itm_nav_public_7",
+            "t": "Link",
+            "n": "Pages légales, CGU"
+          }
+        ]
+      },
+      {
+        "id": "landing_public",
+        "title": "Landing Page (Vitrine Profil)",
+        "category": "Composant",
+        "page": "page_vitrine",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_landing_public_0",
+            "t": "h3",
+            "n": "HERO SECTION"
+          },
+          {
+            "itemId": "itm_landing_public_1",
+            "t": "Media",
+            "n": "Photo de profil Agora"
+          },
+          {
+            "itemId": "itm_landing_public_2",
+            "t": "CTA",
+            "n": "Bouton 'Rejoindre'"
+          },
+          {
+            "itemId": "itm_landing_public_3",
+            "t": "Text",
+            "n": "Nom / Sous-titre"
+          },
+          {
+            "itemId": "itm_landing_public_4",
+            "t": "Text",
+            "n": "Description"
+          },
+          {
+            "itemId": "itm_landing_public_5",
+            "t": "h3",
+            "n": "NAVIGATION"
+          },
+          {
+            "itemId": "itm_landing_public_6",
+            "t": "Tab",
+            "n": "Menu (Personnalisable)"
+          }
+        ],
+        "modes": [
+          "view",
+          "edit"
+        ],
+        "default_mode": "view",
+        "section_role": "conversion"
+      },
+      {
+        "id": "inscr",
+        "title": "Inscription",
+        "category": "Composant",
+        "page": "page_auth",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_inscr_0",
+            "t": "h3",
+            "n": "FORMULAIRE"
+          },
+          {
+            "itemId": "itm_inscr_1",
+            "t": "Input",
+            "n": "Email & Mot de passe"
+          },
+          {
+            "itemId": "itm_inscr_2",
+            "t": "Auth",
+            "n": "Google / Apple SSO"
+          },
+          {
+            "itemId": "itm_inscr_3",
+            "t": "h3",
+            "n": "VALIDATION"
+          },
+          {
+            "itemId": "itm_inscr_4",
+            "t": "Consent",
+            "n": "RGPD + CGU"
+          },
+          {
+            "itemId": "itm_inscr_5",
+            "t": "Link",
+            "n": "Déjà un compte ?"
+          }
+        ]
+      },
+      {
+        "id": "conn",
+        "title": "Connexion",
+        "category": "Composant",
+        "page": "page_auth",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_conn_0",
+            "t": "h3",
+            "n": "FORMULAIRE"
+          },
+          {
+            "itemId": "itm_conn_1",
+            "t": "Input",
+            "n": "Email + Password"
+          },
+          {
+            "itemId": "itm_conn_2",
+            "t": "Auth",
+            "n": "Google / Apple SSO"
+          },
+          {
+            "itemId": "itm_conn_3",
+            "t": "h3",
+            "n": "ACTIONS"
+          },
+          {
+            "itemId": "itm_conn_4",
+            "t": "Action Overlay",
+            "n": "Mot de passe oublié"
+          },
+          {
+            "itemId": "itm_conn_5",
+            "t": "Link",
+            "n": "Pas encore de compte ?"
+          }
+        ]
+      },
+      {
+        "id": "nav_app",
+        "title": "Sidebar Plateforme",
+        "category": "Composant",
+        "page": "page_workspace",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_nav_app_0",
+            "t": "h3",
+            "n": "MENU LATÉRAL CONNECTÉ"
+          },
+          {
+            "itemId": "itm_nav_app_1",
+            "t": "Action Overlay",
+            "n": "Toggle Collapse menu"
+          },
+          {
+            "itemId": "itm_nav_app_2",
+            "t": "Link",
+            "n": "Logo 'Agora'"
+          },
+          {
+            "itemId": "itm_nav_app_3",
+            "t": "Input",
+            "n": "Recherche universelle"
+          },
+          {
+            "itemId": "itm_nav_app_4",
+            "t": "Action",
+            "n": "Messages"
+          },
+          {
+            "itemId": "itm_nav_app_5",
+            "t": "Action",
+            "n": "Notifications"
+          },
+          {
+            "itemId": "itm_nav_app_6",
+            "t": "Action",
+            "n": "Ma boutique"
+          },
+          {
+            "itemId": "itm_nav_app_7",
+            "t": "Action",
+            "n": "Email List"
+          },
+          {
+            "itemId": "itm_nav_app_8",
+            "t": "h3",
+            "n": "MON ESPACE"
+          },
+          {
+            "itemId": "itm_nav_app_9",
+            "t": "Action",
+            "n": "-> Mon Profil"
+          },
+          {
+            "itemId": "itm_nav_app_10",
+            "t": "Action Overlay",
+            "n": "-> Paramètres"
+          }
+        ]
+      },
+      {
+        "id": "mon_profil",
+        "title": "Mon Profil (SaaS Hub)",
+        "category": "Composant",
+        "page": "page_workspace",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_mon_profil_0",
+            "t": "h3",
+            "n": "VUE PROFIL"
+          },
+          {
+            "itemId": "itm_mon_profil_1",
+            "t": "Media",
+            "n": "Photo de profile"
+          },
+          {
+            "itemId": "itm_mon_profil_2",
+            "t": "CTA",
+            "n": "Suivre + S'abonner"
+          },
+          {
+            "itemId": "itm_mon_profil_3",
+            "t": "Text",
+            "n": "Nom + sous titre"
+          },
+          {
+            "itemId": "itm_mon_profil_4",
+            "t": "Text",
+            "n": "Description"
+          },
+          {
+            "itemId": "itm_mon_profil_5",
+            "t": "Link",
+            "n": "Liens reseaux sociaux"
+          },
+          {
+            "itemId": "itm_mon_profil_6",
+            "t": "Tab",
+            "n": "Menu (Personnalisable)"
+          }
+        ]
+      },
+      {
+        "id": "Accueil",
+        "title": "Accueil",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_Accueil_0",
+            "t": "Widget",
+            "n": "News"
+          },
+          {
+            "itemId": "itm_Accueil_1",
+            "t": "Widget",
+            "n": "Evenement"
+          },
+          {
+            "itemId": "itm_Accueil_2",
+            "t": "Widget",
+            "n": "Prise de rendez-vous"
+          },
+          {
+            "itemId": "itm_Accueil_3",
+            "t": "Widget",
+            "n": "Video"
+          },
+          {
+            "itemId": "itm_Accueil_4",
+            "t": "Widget",
+            "n": "Shop"
+          },
+          {
+            "itemId": "itm_Accueil_5",
+            "t": "Widget",
+            "n": "FAQ"
+          },
+          {
+            "itemId": "itm_Accueil_6",
+            "t": "Widget",
+            "n": "Portfolio"
+          },
+          {
+            "itemId": "itm_Accueil_7",
+            "t": "Widget",
+            "n": "Histoire"
+          }
+        ]
+      },
+      {
+        "id": "News",
+        "title": "News",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_News_0",
+            "t": "h3",
+            "n": "Entete"
+          },
+          {
+            "itemId": "itm_News_1",
+            "t": "Text",
+            "n": "Nom"
+          },
+          {
+            "itemId": "itm_News_2",
+            "t": "Text",
+            "n": "sous-titre"
+          },
+          {
+            "itemId": "itm_News_3",
+            "t": "Action Overlay",
+            "n": "Option"
+          },
+          {
+            "itemId": "itm_News_4",
+            "t": "h3",
+            "n": "Content"
+          },
+          {
+            "itemId": "itm_News_5",
+            "t": "Media",
+            "n": "Image / Video"
+          },
+          {
+            "itemId": "itm_News_6",
+            "t": "h3",
+            "n": "Footer"
+          },
+          {
+            "itemId": "itm_News_7",
+            "t": "Toggle",
+            "n": "Icone like, comment, nb vue et share"
+          }
+        ]
+      },
+      {
+        "id": "event",
+        "title": "Evenement",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_event_0",
+            "t": "Text",
+            "n": "date"
+          },
+          {
+            "itemId": "itm_event_1",
+            "t": "Text",
+            "n": "nom de l'event"
+          },
+          {
+            "itemId": "itm_event_2",
+            "t": "Text",
+            "n": "date + heure"
+          },
+          {
+            "itemId": "itm_event_3",
+            "t": "Text",
+            "n": "type - digitale ou physique + où"
+          },
+          {
+            "itemId": "itm_event_4",
+            "t": "CTA",
+            "n": "Participer / m'inscrire"
+          },
+          {
+            "itemId": "itm_event_5",
+            "t": "h3",
+            "n": "optionnels"
+          },
+          {
+            "itemId": "itm_event_6",
+            "t": "Media",
+            "n": "Image (carousselle) / video"
+          }
+        ]
+      },
+      {
+        "id": "Agenda",
+        "title": "Calendrier",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_Agenda_0",
+            "t": "Action",
+            "n": "Disponibilité"
+          },
+          {
+            "itemId": "itm_Agenda_1",
+            "t": "CTA",
+            "n": "Réserver"
+          }
+        ]
+      },
+      {
+        "id": "Video",
+        "title": "Video",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_Video_0",
+            "t": "Tab",
+            "n": "Tout et playliste"
+          },
+          {
+            "itemId": "itm_Video_1",
+            "t": "h3",
+            "n": "video"
+          },
+          {
+            "itemId": "itm_Video_2",
+            "t": "vidéo",
+            "n": "PLayer video"
+          },
+          {
+            "itemId": "itm_Video_3",
+            "t": "icone",
+            "n": "like, comment, vue, share"
+          }
+        ]
+      },
+      {
+        "id": "Shop",
+        "title": "Shop",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_Shop_0",
+            "t": "h3",
+            "n": "Information générale"
+          },
+          {
+            "itemId": "itm_Shop_1",
+            "t": "Action",
+            "n": "Ajout - images produit"
+          },
+          {
+            "itemId": "itm_Shop_2",
+            "t": "Toggle",
+            "n": "Statut (visible / masqué)"
+          },
+          {
+            "itemId": "itm_Shop_3",
+            "t": "Input",
+            "n": "Nom du produit"
+          },
+          {
+            "itemId": "itm_Shop_4",
+            "t": "Input",
+            "n": "Prix"
+          },
+          {
+            "itemId": "itm_Shop_5",
+            "t": "Input",
+            "n": "optionnel - ajout promotion"
+          },
+          {
+            "itemId": "itm_Shop_6",
+            "t": "Text",
+            "n": "affichage prix après réduction"
+          },
+          {
+            "itemId": "itm_Shop_7",
+            "t": "Input",
+            "n": "Description"
+          },
+          {
+            "itemId": "itm_Shop_8",
+            "t": "Input",
+            "n": "Liste - point clef"
+          },
+          {
+            "itemId": "itm_Shop_9",
+            "t": "h3",
+            "n": "Détails"
+          },
+          {
+            "itemId": "itm_Shop_10",
+            "t": "List",
+            "n": "Type de produit (physique / digitale)"
+          },
+          {
+            "itemId": "itm_Shop_11",
+            "t": "Input",
+            "n": "Stock globale (si porduit physique)"
+          },
+          {
+            "itemId": "itm_Shop_12",
+            "t": "Input",
+            "n": "Tags"
+          },
+          {
+            "itemId": "itm_Shop_13",
+            "t": "Input",
+            "n": "liste - Variante produit (Nom oprtion / valeurs possible / stock par options)"
+          },
+          {
+            "itemId": "itm_Shop_14",
+            "t": "h3",
+            "n": "Contenu"
+          },
+          {
+            "itemId": "itm_Shop_15",
+            "t": "content",
+            "n": "Zone image + texte"
+          },
+          {
+            "itemId": "itm_Shop_16",
+            "t": "Action",
+            "n": "ajout text"
+          },
+          {
+            "itemId": "itm_Shop_17",
+            "t": "Action",
+            "n": "ajout media"
+          }
+        ]
+      },
+      {
+        "id": "FAQ",
+        "title": "FAQ",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_FAQ_0",
+            "t": "Info",
+            "n": "format liste menue dépliant"
+          },
+          {
+            "itemId": "itm_FAQ_1",
+            "t": "content",
+            "n": "zone image + texte"
+          },
+          {
+            "itemId": "itm_FAQ_2",
+            "t": "h3",
+            "n": "footer"
+          },
+          {
+            "itemId": "itm_FAQ_3",
+            "t": "Action",
+            "n": "Icone - like, comment, vue, share"
+          }
+        ]
+      },
+      {
+        "id": "Portfolio",
+        "title": "Lien",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_Portfolio_0",
+            "t": "Info",
+            "n": "Zone drag and drop en mode edittion"
+          },
+          {
+            "itemId": "itm_Portfolio_1",
+            "t": "Link",
+            "n": "Format image 1:1, rectangle (full width) et btn"
+          }
+        ]
+      },
+      {
+        "id": "Histoire",
+        "title": "Histoire / portfolio",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_Histoire_0",
+            "t": "Action",
+            "n": "ajout texte, image et lien"
+          }
+        ]
+      },
+      {
+        "id": "analytic",
+        "title": "Analytics",
+        "category": "Composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_analytic_0",
+            "t": "h3",
+            "n": "Entête"
+          },
+          {
+            "itemId": "itm_analytic_1",
+            "t": "Action",
+            "n": "Bouton \"Exporter CSV\""
+          },
+          {
+            "itemId": "itm_analytic_2",
+            "t": "Action",
+            "n": "Bouton \"Nouvel article\""
+          },
+          {
+            "itemId": "itm_analytic_3",
+            "t": "h3",
+            "n": "Graphique de performance"
+          },
+          {
+            "itemId": "itm_analytic_4",
+            "t": "Select",
+            "n": "Toggle Semaine / Année"
+          },
+          {
+            "itemId": "itm_analytic_5",
+            "t": "Action",
+            "n": "Navigation Précédent / Suivant"
+          },
+          {
+            "itemId": "itm_analytic_6",
+            "t": "Action",
+            "n": "Clic sur une barre du graphique"
+          },
+          {
+            "itemId": "itm_analytic_7",
+            "t": "h3",
+            "n": "Onglets de navigation"
+          },
+          {
+            "itemId": "itm_analytic_8",
+            "t": "Action",
+            "n": "Mes Articles"
+          },
+          {
+            "itemId": "itm_analytic_9",
+            "t": "Action",
+            "n": "Historique des ventes"
+          },
+          {
+            "itemId": "itm_analytic_10",
+            "t": "Action",
+            "n": "Vos paiements"
+          }
+        ]
+      },
+      {
+        "id": "email",
+        "title": "Email list",
+        "category": "Composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_email_0",
+            "t": "h3",
+            "n": "Entete"
+          },
+          {
+            "itemId": "itm_email_1",
+            "t": "Action",
+            "n": "Bouton \"Exporter\""
+          },
+          {
+            "itemId": "itm_email_2",
+            "t": "h3",
+            "n": "Graphique"
+          },
+          {
+            "itemId": "itm_email_3",
+            "t": "Action",
+            "n": "Toggle Semaine / Mois"
+          },
+          {
+            "itemId": "itm_email_4",
+            "t": "Action",
+            "n": "Flèches de navigation"
+          },
+          {
+            "itemId": "itm_email_5",
+            "t": "Action",
+            "n": "Clic sur une barre du graphique"
+          },
+          {
+            "itemId": "itm_email_6",
+            "t": "h3",
+            "n": "onglet de navigation"
+          },
+          {
+            "itemId": "itm_email_7",
+            "t": "Tab",
+            "n": "Menu"
+          }
+        ]
+      },
+      {
+        "id": "membre",
+        "title": "Membre",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_membre_0",
+            "t": "Input",
+            "n": "Barre de recherche"
+          },
+          {
+            "itemId": "itm_membre_1",
+            "t": "Tableau",
+            "n": "Nom / email / menu option"
+          }
+        ]
+      },
+      {
+        "id": "campagne",
+        "title": "Campagne",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_campagne_0",
+            "t": "Input",
+            "n": "Sujet de l'email"
+          },
+          {
+            "itemId": "itm_campagne_1",
+            "t": "Select",
+            "n": "Catégorie (personnalisable )(newsletter...)"
+          },
+          {
+            "itemId": "itm_campagne_2",
+            "t": "Input",
+            "n": "Contenu de l'email"
+          }
+        ]
+      },
+      {
+        "id": "Historique",
+        "title": "Historique",
+        "category": "Sous-composant",
+        "page": "",
+        "desc": "",
+        "items": [
+          {
+            "itemId": "itm_Historique_0",
+            "t": "h3",
+            "n": "Entete"
+          },
+          {
+            "itemId": "itm_Historique_1",
+            "t": "Tab",
+            "n": "Catégorie personnalisable (newsletter..)"
+          },
+          {
+            "itemId": "itm_Historique_2",
+            "t": "h3",
+            "n": "Liste historique"
+          },
+          {
+            "itemId": "itm_Historique_3",
+            "t": "Tableau",
+            "n": "titre, nombre d'envoie"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "nav_public",
+        "sourceItemId": "itm_nav_public_5",
+        "to": "conn"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_2",
+        "to": "inscr"
+      },
+      {
+        "from": "conn",
+        "sourceItemId": "itm_conn_2",
+        "to": "mon_profil"
+      },
+      {
+        "from": "conn",
+        "sourceItemId": "itm_conn_1",
+        "to": "mon_profil"
+      },
+      {
+        "from": "conn",
+        "sourceItemId": "itm_conn_5",
+        "to": "inscr"
+      },
+      {
+        "from": "inscr",
+        "sourceItemId": "itm_inscr_1",
+        "to": "mon_profil"
+      },
+      {
+        "from": "inscr",
+        "sourceItemId": "itm_inscr_2",
+        "to": "mon_profil"
+      },
+      {
+        "from": "nav_public",
+        "sourceItemId": "itm_nav_public_4",
+        "to": "inscr"
+      },
+      {
+        "from": "nav_public",
+        "sourceItemId": "itm_nav_public_4",
+        "to": "conn"
+      },
+      {
+        "from": "inscr",
+        "sourceItemId": "itm_inscr_5",
+        "to": "conn"
+      },
+      {
+        "from": "nav_app",
+        "sourceItemId": "itm_nav_app_9",
+        "to": "mon_profil"
+      },
+      {
+        "from": "mon_profil",
+        "sourceItemId": "itm_mon_profil_6",
+        "to": "Accueil"
+      },
+      {
+        "from": "mon_profil",
+        "sourceItemId": "itm_mon_profil_6",
+        "to": "News"
+      },
+      {
+        "from": "mon_profil",
+        "sourceItemId": "itm_mon_profil_6",
+        "to": "event"
+      },
+      {
+        "from": "mon_profil",
+        "sourceItemId": "itm_mon_profil_6",
+        "to": "Agenda"
+      },
+      {
+        "from": "mon_profil",
+        "sourceItemId": "itm_mon_profil_6",
+        "to": "Video"
+      },
+      {
+        "from": "mon_profil",
+        "sourceItemId": "itm_mon_profil_6",
+        "to": "Histoire"
+      },
+      {
+        "from": "mon_profil",
+        "sourceItemId": "itm_mon_profil_6",
+        "to": "Shop"
+      },
+      {
+        "from": "mon_profil",
+        "sourceItemId": "itm_mon_profil_6",
+        "to": "Portfolio"
+      },
+      {
+        "from": "nav_app",
+        "sourceItemId": "itm_nav_app_6",
+        "to": "analytic"
+      },
+      {
+        "from": "email",
+        "sourceItemId": "itm_email_7",
+        "to": "membre"
+      },
+      {
+        "from": "nav_app",
+        "sourceItemId": "itm_nav_app_7",
+        "to": "email"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_6",
+        "to": "Accueil"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_6",
+        "to": "News"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_6",
+        "to": "event"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_6",
+        "to": "Agenda"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_6",
+        "to": "Video"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_6",
+        "to": "Histoire"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_6",
+        "to": "Shop"
+      },
+      {
+        "from": "landing_public",
+        "sourceItemId": "itm_landing_public_6",
+        "to": "Portfolio"
+      },
+      {
+        "from": "email",
+        "sourceItemId": "itm_email_7",
+        "to": "campagne"
+      },
+      {
+        "from": "email",
+        "sourceItemId": "itm_email_7",
+        "to": "Historique"
+      }
+    ]
+  },
+  "canvas_state": {
+    "legend": [
+      {
+        "label": "Composant",
+        "color": "#f59e0b"
+      },
+      {
+        "label": "Sous-composant",
+        "color": "#6366f1"
+      }
+    ],
+    "nodeStates": {
+      "nav_public": {
+        "x": 770,
+        "y": -20,
+        "color": "#f59e0b"
+      },
+      "landing_public": {
+        "x": 770,
+        "y": 300,
+        "color": "#f59e0b"
+      },
+      "inscr": {
+        "x": 1260,
+        "y": -20,
+        "color": "#f59e0b"
+      },
+      "conn": {
+        "x": 1250,
+        "y": 290,
+        "color": "#f59e0b"
+      },
+      "nav_app": {
+        "x": 1710,
+        "y": -10,
+        "color": "#f59e0b"
+      },
+      "mon_profil": {
+        "x": 1730,
+        "y": 450,
+        "color": "#f59e0b"
+      },
+      "Accueil": {
+        "x": 0,
+        "y": 1690,
+        "color": "#6366f1"
+      },
+      "News": {
+        "x": 370,
+        "y": 1690,
+        "color": "#6366f1"
+      },
+      "event": {
+        "x": 740,
+        "y": 1690,
+        "color": "#6366f1"
+      },
+      "Agenda": {
+        "x": 1100,
+        "y": 1690,
+        "color": "#6366f1"
+      },
+      "Video": {
+        "x": 1460,
+        "y": 1690,
+        "color": "#6366f1"
+      },
+      "Shop": {
+        "x": 2170,
+        "y": 1690,
+        "color": "#6366f1"
+      },
+      "FAQ": {
+        "x": 3240,
+        "y": 1680,
+        "color": "#6366f1"
+      },
+      "Portfolio": {
+        "x": 2530,
+        "y": 1690,
+        "color": "#6366f1"
+      },
+      "Histoire": {
+        "x": 1810,
+        "y": 1690,
+        "color": "#6366f1"
+      },
+      "analytic": {
+        "x": 2640,
+        "y": 600,
+        "color": "#f59e0b"
+      },
+      "email": {
+        "x": 2630,
+        "y": 0,
+        "color": "#f59e0b"
+      },
+      "membre": {
+        "x": 3140,
+        "y": 0,
+        "color": "#6366f1"
+      },
+      "campagne": {
+        "x": 3140,
+        "y": 140,
+        "color": "#6366f1"
+      },
+      "Historique": {
+        "x": 3140,
+        "y": 310,
+        "color": "#6366f1"
+      }
+    }
+  }
+}
