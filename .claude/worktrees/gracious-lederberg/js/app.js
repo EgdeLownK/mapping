@@ -15,6 +15,6 @@ A.toggleWidget = function(contentId) {
 };
 A.initViewport();
 A.fullRender();
-console.log('Agora Mapping Editor v4 ✓ (Sectors → Pages → Components)');
-console.log('Nodes:',A.data.core_architecture.nodes.length,'| Edges:',A.data.core_architecture.edges.length,'| Sectors:',(A.data.core_architecture.sectors||[]).length,'| Pages:',(A.data.core_architecture.pages||[]).length);
+console.log('Agora Mapping Editor v3 ✓');
+console.log('Nodes:',A.data.core_architecture.nodes.length,'| Edges:',A.data.core_architecture.edges.length,'| Types:',A.data.core_architecture.itemTypes.length);
 })();

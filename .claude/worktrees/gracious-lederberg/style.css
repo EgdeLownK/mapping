@@ -20,14 +20,7 @@ body{background:#0F172A;font-family:'Inter',Arial,sans-serif;overflow:hidden;hei
 .ild{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:600;color:#94A3B8;white-space:nowrap;padding:4px 6px;background:rgba(30,41,59,0.5);border-radius:6px;border:1px dashed #334155;}
 .ildd{width:8px;height:8px;border-radius:3px;flex-shrink:0;border:2px solid;background:transparent;}
 .ild-count{font-size:9px;font-weight:700;color:#64748B;background:#1E293B;padding:2px 5px;border-radius:4px;margin-left:auto;}
-.islands-empty,.empty-hint{font-size:9px;color:#475569;font-style:italic;padding:4px;}
-
-/* Pages widget */
-.pages-group{margin-bottom:6px;}
-.pages-group-title{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;padding:2px 0;margin-bottom:2px;}
-.page-entry{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:500;color:#94A3B8;padding:3px 6px 3px 12px;background:rgba(30,41,59,0.5);border-radius:5px;border:1px solid #1E293B;margin-bottom:3px;}
-.page-entry-title{flex:1;color:#CBD5E1;font-weight:600;}
-.page-entry-url{font-size:9px;color:#64748B;font-family:'JetBrains Mono',monospace;}
+.islands-empty{font-size:9px;color:#475569;font-style:italic;padding:4px;}
 
 /* Buttons */
 .toolbar{display:flex;gap:6px;flex-shrink:0;}

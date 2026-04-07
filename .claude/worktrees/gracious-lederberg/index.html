@@ -41,24 +41,12 @@
     <div class="widget-content" id="canvas-legend"></div>
   </div>
 
-  <!-- Widget: Secteurs (renamed from Pages) -->
-  <div class="widget-box" id="widget-sectors">
-    <div class="cl-title" onclick="Agora.toggleWidget('sectors-container')">
-      <span>Secteurs</span>
-      <div style="display:flex;align-items:center;gap:4px;">
-        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); Agora.openSectorEditor()" style="font-size:11px;padding:2px 4px;">✎</button>
-        <span class="widget-chevron" id="chevron-sectors-container">▼</span>
-      </div>
-    </div>
-    <div class="widget-content" id="sectors-container"></div>
-  </div>
-
-  <!-- Widget: Pages (new sense) -->
+  <!-- Widget: Pages -->
   <div class="widget-box" id="widget-pages">
     <div class="cl-title" onclick="Agora.toggleWidget('pages-container')">
       <span>Pages</span>
       <div style="display:flex;align-items:center;gap:4px;">
-        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); Agora.openNewPageEditor()" style="font-size:11px;padding:2px 4px;">✎</button>
+        <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation(); Agora.openPageEditor()" style="font-size:11px;padding:2px 4px;">✎</button>
         <span class="widget-chevron" id="chevron-pages-container">▼</span>
       </div>
     </div>
@@ -109,10 +97,8 @@
       <div class="form-group"><label class="form-label">Titre</label><input class="form-input" id="add-table-title" placeholder="Nom du composant"></div>
       <div class="form-group"><label class="form-label">Catégorie</label>
         <select class="form-select" id="add-table-cat"><option value="">— Aucune —</option></select></div>
-      <div class="form-group"><label class="form-label">Secteur</label>
-        <select class="form-select" id="add-table-sector" onchange="Agora.addTableSectorChanged()"><option value="">— Aucun —</option></select></div>
-      <div class="form-group"><label class="form-label">Page</label>
-        <select class="form-select" id="add-table-page" disabled><option value="">— Aucune (transverse) —</option></select></div>
+      <div class="form-group"><label class="form-label">Page (Vue)</label>
+        <select class="form-select" id="add-table-page"><option value="">— Aucune —</option></select></div>
     </div>
     <div class="modal-footer"><button class="btn" onclick="Agora.closeModal('modal-add-table')">Annuler</button><button class="btn btn-primary" onclick="Agora.saveAddTable()">Ajouter</button></div>
   </div>
@@ -136,21 +122,12 @@
   </div>
 </div>
 
-<!-- MODAL: SECTOR EDITOR (renamed from modal-pages) -->
-<div class="modal-overlay" id="modal-sectors">
+<!-- MODAL: ISLAND EDITOR -->
+<div class="modal-overlay" id="modal-pages">
   <div class="modal modal-sm">
-    <div class="modal-header"><div class="title">Gérer les Secteurs</div><button class="modal-close" onclick="Agora.closeModal('modal-sectors')">✕</button></div>
-    <div class="modal-body"><div id="sector-editor-body"></div><button class="btn btn-sm" style="margin-top:12px;width:100%;" onclick="Agora.addSectorRow()">＋ Ajouter un secteur</button></div>
-    <div class="modal-footer"><button class="btn" onclick="Agora.closeModal('modal-sectors')">Annuler</button><button class="btn btn-primary" onclick="Agora.saveSectors()">💾 Sauvegarder</button></div>
-  </div>
-</div>
-
-<!-- MODAL: PAGE EDITOR (new sense) -->
-<div class="modal-overlay" id="modal-pages-new">
-  <div class="modal modal-md">
-    <div class="modal-header"><div class="title">📄 Gérer les Pages</div><button class="modal-close" onclick="Agora.closeModal('modal-pages-new')">✕</button></div>
-    <div class="modal-body"><div id="new-page-editor-body"></div><button class="btn btn-sm" style="margin-top:12px;width:100%;" onclick="Agora.addNewPageRow()">＋ Ajouter une page</button></div>
-    <div class="modal-footer"><button class="btn" onclick="Agora.closeModal('modal-pages-new')">Annuler</button><button class="btn btn-primary" onclick="Agora.saveNewPages()">💾 Sauvegarder</button></div>
+    <div class="modal-header"><div class="title">📄 Gérer les Pages</div><button class="modal-close" onclick="Agora.closeModal('modal-pages')">✕</button></div>
+    <div class="modal-body"><div id="page-editor-body"></div><button class="btn btn-sm" style="margin-top:12px;width:100%;" onclick="Agora.addPageRow()">＋ Ajouter une page</button></div>
+    <div class="modal-footer"><button class="btn" onclick="Agora.closeModal('modal-pages')">Annuler</button><button class="btn btn-primary" onclick="Agora.savePages()">💾 Sauvegarder</button></div>
   </div>
 </div>
 
@@ -181,25 +158,22 @@
       <p>Cet outil sert à <strong>cartographier l'architecture complète d'une application</strong> sous forme de schéma structuré. L'objectif principal est de produire un fichier <strong>🤖 Export IA</strong> qu'une intelligence artificielle peut lire pour comprendre intégralement comment l'app est construite — sans avoir accès au code.</p>
       <p>Le schéma décrit <strong>ce qui existe dans l'interface</strong> (les composants et leurs éléments) et <strong>comment ils sont reliés</strong> (les flux de navigation). Une IA peut ainsi répondre à des questions sur l'architecture, suggérer des évolutions, détecter des incohérences ou générer du code en contexte.</p>
 
-      <h3>🗂️ Les 5 concepts fondamentaux</h3>
+      <h3>🗂️ Les 4 concepts fondamentaux</h3>
 
-      <p><strong>🏗️ Secteurs</strong> — Un secteur correspond à un <em>grand contexte logique</em> du site ou de l'app : par exemple "Vitrine publique", "Authentification", "Espace connecté". Un secteur regroupe plusieurs pages et composants transverses.</p>
+      <p><strong>📄 Pages</strong> — Une page correspond à une <em>section logique</em> du site ou de l'app : par exemple "Vitrine publique", "Authentification", "Espace connecté". Ce n'est pas forcément une URL unique — c'est un contexte d'affichage de haut niveau qui regroupe plusieurs composants.</p>
 
-      <p><strong>📄 Pages</strong> — Une page est un <em>écran réellement affiché à une URL donnée</em> : par exemple "/profil/[slug]", "/login", "/dashboard". Une page appartient toujours à un secteur. Plusieurs pages d'un même secteur peuvent partager des composants transverses.</p>
-
-      <p><strong>⬜ Tables (Composants)</strong> — Chaque table représente un <em>composant d'interface</em> : un bloc autonome et identifiable comme un menu de navigation, une page de profil, un formulaire de connexion, un dashboard, une sidebar. Un composant appartient à un secteur et optionnellement à une page. Un composant sans page est dit "transverse" — partagé entre toutes les pages de son secteur.</p>
+      <p><strong>⬜ Tables (Composants)</strong> — Chaque table représente un <em>composant d'interface</em> : un bloc autonome et identifiable comme un menu de navigation, une page de profil, un formulaire de connexion, un dashboard, une sidebar. Un composant appartient à une page et peut contenir de nombreux éléments.</p>
 
       <p><strong>· Éléments</strong> — Ce sont les <em>briques internes</em> d'un composant : un bouton CTA, un champ de saisie, un onglet, un lien, une zone média... Chaque élément a un type précis (défini dans le widget <strong>Types</strong>) et peut être la source d'une relation.</p>
 
-      <p><strong>🔗 Relations</strong> — Une relation (flèche) part d'un <em>élément précis</em> d'un composant et pointe vers un <em>composant cible</em> ou une <em>page cible</em>. Si la cible est un composant, c'est une navigation interne (changement d'état). Si la cible est une page, c'est un changement d'URL (routing).</p>
+      <p><strong>🔗 Relations</strong> — Une relation (flèche) part d'un <em>élément précis</em> d'un composant et pointe vers un <em>composant cible</em>. Elle modélise un flux de navigation : quel bouton ouvre quelle page, quel formulaire redirige où, quel onglet affiche quel sous-composant.</p>
 
       <h3>🤖 Export IA — comment ça marche</h3>
       <p>Le bouton <strong>🤖 Export IA</strong> génère un <code>.json</code> épuré, sans aucune donnée visuelle (pas de couleurs, pas de positions). Le fichier expose :</p>
       <ul>
         <li>Le <strong>dictionnaire des types d'éléments</strong> : ce que chaque tag signifie fonctionnellement</li>
-        <li>Les <strong>secteurs</strong> et leurs <strong>pages</strong></li>
-        <li>Les <strong>composants</strong> avec leurs éléments, leur secteur/page parent et leur composant parent si applicable</li>
-        <li>Les <strong>flux</strong> : quel élément déclenche quelle transition, vers quel composant ou page, et de quel type d'interaction il s'agit</li>
+        <li>Les <strong>composants</strong> avec leurs éléments, leur page parente et leur composant parent si applicable</li>
+        <li>Les <strong>flux</strong> : quel élément déclenche quelle transition, vers quel composant, et de quel type d'interaction il s'agit</li>
       </ul>
       <p>💡 Plus les champs <strong>Description</strong> des composants sont remplis, plus l'IA comprendra le rôle de chaque bloc sans ambiguïté.</p>
 

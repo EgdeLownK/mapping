@@ -47,64 +47,63 @@ var DEFAULT_DATA={
       { "type": "open_overlay", "label": "Ouverture overlay", "color": "#EC4899" },
       { "type": "open_tab", "label": "Affichage sous-composant", "color": "#D946EF" }
     ],
-    sectors: [
+    pages: [
       {id:"page_vitrine",title:"Vitrine Publique"},
       {id:"page_auth",title:"Authentification"},
       {id:"page_workspace",title:"Mon Espace"}
     ],
-    pages: [],
     nodes: [
-      {id:"nav_public",title:"Sidebar Publique",category:"",sector:"page_vitrine",desc:"Barre latérale de navigation pour visiteurs non connectés.",items:[
+      {id:"nav_public",title:"Sidebar Publique",category:"",page:"page_vitrine",desc:"Barre latérale de navigation pour visiteurs non connectés.",items:[
         {itemId:"itm_def1", t:"h3",n:"MENU LATÉRAL",s:"public"},{itemId:"itm_def2", t:"+Action Overlay",n:"Toggle Collapse",s:"public"},{itemId:"itm_def3", t:"+Link",n:"Logo 'Agora' (Accueil)",s:"public"},
         {itemId:"itm_def4", t:"+Input",n:"Recherche publique",s:"public"},{itemId:"itm_def5", t:"+Action",n:"CTA 'Créer mon espace'",s:"public"},{itemId:"itm_def6", t:"+Action",n:"CTA 'Se connecter'",s:"public"},
         {itemId:"itm_def7", t:"h3",n:"FOOTER",s:"public"},{itemId:"itm_def8", t:"+Link",n:"Pages légales, CGU",s:"public"}
       ]},
-      {id:"landing_public",title:"Landing Page (Vitrine Profil)",category:"",sector:"page_vitrine",desc:"Aperçu public du profil du créateur pour les visiteurs.",items:[
+      {id:"landing_public",title:"Landing Page (Vitrine Profil)",category:"",page:"page_vitrine",desc:"Aperçu public du profil du créateur pour les visiteurs.",items:[
         {itemId:"itm_def10", t:"h3",n:"HERO SECTION",s:"public"},{itemId:"itm_def11", t:"+Media",n:"Photo de profil Agora",s:"public"},{itemId:"itm_def12", t:"+Text",n:"Pitch plateforme MVP",s:"public"},
         {itemId:"itm_def13", t:"+CTA",n:"Bouton 'Rejoindre'",s:"public"},{itemId:"itm_def14", t:"h3",n:"NAVIGATION",s:"public"},{itemId:"itm_def15", t:"+Tab",n:"Agenda",s:"public"},{itemId:"itm_def16", t:"+Tab",n:"Shop",s:"public"},{itemId:"itm_def17", t:"+Tab",n:"Vidéos",s:"public"},{itemId:"itm_def18", t:"+Tab",n:"Histoire",s:"public"}
       ]},
-      {id:"inscr",title:"Inscription",category:"",sector:"page_auth",desc:"Formulaire de création de compte avec gestion SSO.",items:[
+      {id:"inscr",title:"Inscription",category:"",page:"page_auth",desc:"Formulaire de création de compte avec gestion SSO.",items:[
         {itemId:"itm_def20", t:"h3",n:"FORMULAIRE",s:"public"},{itemId:"itm_def21", t:"+Input",n:"Email & Mot de passe",s:"public"},{itemId:"itm_def22", t:"+Auth",n:"Google / Apple SSO",s:"public"},
         {itemId:"itm_def23", t:"h3",n:"VALIDATION",s:"public"},{itemId:"itm_def24", t:"+Consent",n:"RGPD + CGU",s:"public"},{itemId:"itm_def25", t:"+CTA",n:"Bouton 'Créer mon compte'",s:"public"},{itemId:"itm_def26", t:"+Link",n:"Déjà un compte ?",s:"public"}
       ]},
-      {id:"conn",title:"Connexion",category:"",sector:"page_auth",desc:"Interface d'authentification pour les utilisateurs existants.",items:[
+      {id:"conn",title:"Connexion",category:"",page:"page_auth",desc:"Interface d'authentification pour les utilisateurs existants.",items:[
         {itemId:"itm_def30", t:"h3",n:"FORMULAIRE",s:"public"},{itemId:"itm_def31", t:"+Input",n:"Email + Password",s:"public"},{itemId:"itm_def32", t:"+Auth",n:"Google / Apple SSO",s:"public"},
         {itemId:"itm_def33", t:"h3",n:"ACTIONS",s:"public"},{itemId:"itm_def34", t:"+Action Overlay",n:"Mot de passe oublié",s:"public"},{itemId:"itm_def35", t:"+CTA",n:"Bouton 'Se connecter'",s:"public"},{itemId:"itm_def36", t:"+Link",n:"Pas encore de compte ?",s:"public"}
       ]},
-      {id:"nav_app",title:"Sidebar Plateforme",category:"",sector:"page_workspace",desc:"Menu de navigation principale pour utilisateurs connectés.",items:[
+      {id:"nav_app",title:"Sidebar Plateforme",category:"",page:"page_workspace",desc:"Menu de navigation principale pour utilisateurs connectés.",items:[
         {itemId:"itm_def40", t:"h3",n:"MENU LATÉRAL CONNECTÉ",s:"auth_only"},{itemId:"itm_def41", t:"+Action Overlay",n:"Toggle Collapse",s:"auth_only"},{itemId:"itm_def42", t:"+Link",n:"Logo 'Agora'",s:"auth_only"},
         {itemId:"itm_def43", t:"+Input",n:"Recherche universelle",s:"auth_only"},{itemId:"itm_def44", t:"+Action",n:"Messages",s:"auth_only"},{itemId:"itm_def45", t:"+Action",n:"Notifications",s:"auth_only"},
         {itemId:"itm_def46", t:"h3",n:"MON ESPACE",s:"auth_only"},{itemId:"itm_def47", t:"+Action",n:"-> Mon Profil",s:"auth_only"},{itemId:"itm_def48", t:"+Action Overlay",n:"-> Paramètres",s:"owner_only"}
       ]},
-      {id:"home_discover",title:"Accueil (Découverte)",category:"",sector:"page_workspace",desc:"Moteur de recherche et recommandations intelligentes mondiales.",items:[
+      {id:"home_discover",title:"Accueil (Découverte)",category:"",page:"page_workspace",desc:"Moteur de recherche et recommandations intelligentes mondiales.",items:[
         {itemId:"itm_def50", t:"h3",n:"MOTEUR DE DÉCOUVERTE",s:"auth_only"},{itemId:"itm_def51", t:"+Input",n:"Barre de recherche géante",s:"auth_only"},
         {itemId:"itm_def52", t:"+List",n:"Créateurs recommandés",s:"auth_only"},{itemId:"itm_def53", t:"+List",n:"Produits mis en avant",s:"auth_only"},{itemId:"itm_def54", t:"+Action",n:"Ouvrir Profil Créateur",s:"auth_only"}
       ]},
-      {id:"mon_profil",title:"Mon Profil (SaaS Hub)",category:"",sector:"page_workspace",desc:"Tableau de bord et éditeur complet du profil.",items:[
+      {id:"mon_profil",title:"Mon Profil (SaaS Hub)",category:"",page:"page_workspace",desc:"Tableau de bord et éditeur complet du profil.",items:[
         {itemId:"itm_def60", t:"h3",n:"VUE PROFIL",s:"auth_only"},{itemId:"itm_def61", t:"+Media",n:"Photo, Bio, Liens",s:"auth_only"},{itemId:"itm_def62", t:"+Tab",n:"Agenda, Shop, Vidéos",s:"auth_only"},
         {itemId:"itm_def63", t:"h3",n:"SURCOUCHE CRÉATEUR",s:"owner_only"},{itemId:"itm_def64", t:"+Action Overlay",n:"Modifier Hero / Infos",s:"owner_only"},
         {itemId:"itm_def65", t:"h3",n:"OUTILS FUTURS (MVP+)",s:"owner_only"},{itemId:"itm_def66", t:"+Action",n:"-> Éditeur",s:"owner_only"},{itemId:"itm_def67", t:"+Action",n:"-> Analytics",s:"owner_only"}
       ]}
     ],
     edges: [
-      { from: "nav_public", sourceItemId: "itm_def2", to: "nav_public", label: "Ouverture menu", type: "open_overlay", target_kind: "component" },
-      { from: "nav_public", sourceItemId: "itm_def3", to: "landing_public", label: "Clic Accueil", type: "nav_link", target_kind: "component" },
-      { from: "nav_public", sourceItemId: "itm_def5", to: "inscr", label: "Clic Créer espace", type: "nav_cta", target_kind: "component" },
-      { from: "nav_public", sourceItemId: "itm_def6", to: "conn", label: "Clic Se connecter", type: "nav_cta", target_kind: "component" },
-      { from: "landing_public", sourceItemId: "itm_def13", to: "inscr", label: "Clic Rejoindre", type: "nav_cta", target_kind: "component" },
-      { from: "inscr", sourceItemId: "itm_def25", to: "mon_profil", label: "Auth SSO réussie", type: "auth_success", target_kind: "component" },
-      { from: "inscr", sourceItemId: "itm_def26", to: "conn", label: "Clic lien", type: "nav_link", target_kind: "component" },
-      { from: "conn", sourceItemId: "itm_def34", to: "conn", label: "Ouverture modale", type: "open_overlay", target_kind: "component" },
-      { from: "conn", sourceItemId: "itm_def35", to: "home_discover", label: "Soumission formulaire", type: "auth_submit", target_kind: "component" },
-      { from: "conn", sourceItemId: "itm_def36", to: "inscr", label: "Clic lien", type: "nav_link", target_kind: "component" },
-      { from: "nav_app", sourceItemId: "itm_def41", to: "nav_app", label: "Toggle collapse", type: "open_overlay", target_kind: "component" },
-      { from: "nav_app", sourceItemId: "itm_def42", to: "home_discover", label: "Clic logo", type: "nav_link", target_kind: "component" },
-      { from: "nav_app", sourceItemId: "itm_def44", to: "nav_app", label: "Clic Messages", type: "nav_menu", target_kind: "component" },
-      { from: "nav_app", sourceItemId: "itm_def45", to: "nav_app", label: "Clic Notifications", type: "open_overlay", target_kind: "component" },
-      { from: "nav_app", sourceItemId: "itm_def47", to: "mon_profil", label: "Clic Mon profil", type: "nav_menu", target_kind: "component" },
-      { from: "nav_app", sourceItemId: "itm_def48", to: "nav_app", label: "Clic paramètres", type: "open_overlay", target_kind: "component" },
-      { from: "home_discover", sourceItemId: "itm_def54", to: "mon_profil", label: "Clic Ouvrir Profil", type: "nav_redirect", target_kind: "component" },
-      { from: "mon_profil", sourceItemId: "itm_def64", to: "mon_profil", label: "Ouverture modale", type: "open_overlay", target_kind: "component" }
+      { from: "nav_public", sourceItemId: "itm_def2", to: "nav_public", label: "Ouverture menu", type: "open_overlay" },
+      { from: "nav_public", sourceItemId: "itm_def3", to: "landing_public", label: "Clic Accueil", type: "nav_link" },
+      { from: "nav_public", sourceItemId: "itm_def5", to: "inscr", label: "Clic Créer espace", type: "nav_cta" },
+      { from: "nav_public", sourceItemId: "itm_def6", to: "conn", label: "Clic Se connecter", type: "nav_cta" },
+      { from: "landing_public", sourceItemId: "itm_def13", to: "inscr", label: "Clic Rejoindre", type: "nav_cta" },
+      { from: "inscr", sourceItemId: "itm_def25", to: "mon_profil", label: "Auth SSO réussie", type: "auth_success" },
+      { from: "inscr", sourceItemId: "itm_def26", to: "conn", label: "Clic lien", type: "nav_link" },
+      { from: "conn", sourceItemId: "itm_def34", to: "conn", label: "Ouverture modale", type: "open_overlay" },
+      { from: "conn", sourceItemId: "itm_def35", to: "home_discover", label: "Soumission formulaire", type: "auth_submit" },
+      { from: "conn", sourceItemId: "itm_def36", to: "inscr", label: "Clic lien", type: "nav_link" },
+      { from: "nav_app", sourceItemId: "itm_def41", to: "nav_app", label: "Toggle collapse", type: "open_overlay" },
+      { from: "nav_app", sourceItemId: "itm_def42", to: "home_discover", label: "Clic logo", type: "nav_link" },
+      { from: "nav_app", sourceItemId: "itm_def44", to: "nav_app", label: "Clic Messages", type: "nav_menu" },
+      { from: "nav_app", sourceItemId: "itm_def45", to: "nav_app", label: "Clic Notifications", type: "open_overlay" },
+      { from: "nav_app", sourceItemId: "itm_def47", to: "mon_profil", label: "Clic Mon profil", type: "nav_menu" },
+      { from: "nav_app", sourceItemId: "itm_def48", to: "nav_app", label: "Clic paramètres", type: "open_overlay" },
+      { from: "home_discover", sourceItemId: "itm_def54", to: "mon_profil", label: "Clic Ouvrir Profil", type: "nav_redirect" },
+      { from: "mon_profil", sourceItemId: "itm_def64", to: "mon_profil", label: "Ouverture modale", type: "open_overlay" }
     ]
   },
   canvas_state: {
@@ -130,19 +129,23 @@ var DEFAULT_DATA={
 // ── Migrate old flat itemTypes to grouped format ──
 function migrateItemTypes(types){
   if(!types||!types.length)return JSON.parse(JSON.stringify(DEFAULT_ITEM_TYPES));
+  // Already in new format?
   if(types[0].category&&types[0].items){
+    // Clean: strip residual 'color' from individual items & ensure description exists
     types.forEach(function(cat){
       if(!cat.description&&cat.description!=='')cat.description='';
       (cat.items||[]).forEach(function(item){delete item.color;});
     });
     return types;
   }
+  // Old flat format: [{tag,label,color}] → group by color
   var byColor={},order=[];
   types.forEach(function(t){
     var key=t.color||'#94A3B8';
     if(!byColor[key]){byColor[key]={category:'Groupe',color:key,description:'',items:[]};order.push(key);}
     byColor[key].items.push({tag:t.tag,label:t.label});
   });
+  // Try to name groups based on known color mappings
   var nameMap={'#10B981':'Validation','#F472B6':'Redirection','#60A5FA':'Overlay','#A78BFA':'Saisie','#94A3B8':'Statique'};
   var usedNames={};
   var result=[];
@@ -158,91 +161,76 @@ function migrateItemTypes(types){
 }
 
 
-// ── Migration Script ──
+// ── Migration Script (Core & Canvas Split) ──
 function generateItemId() { return 'itm_' + Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
 
 function performMigration(data) {
-  // Phase 1: flat format → core_architecture / canvas_state split
-  if (!data.core_architecture) {
-    var newData = {
-      core_architecture: {
-        itemTypes: data.itemTypes ? JSON.parse(JSON.stringify(data.itemTypes)) : [],
-        relationTypes: data.relationTypes ? JSON.parse(JSON.stringify(data.relationTypes)) : [],
-        pages: data.pages ? JSON.parse(JSON.stringify(data.pages)) : [],
-        nodes: [],
-        edges: []
-      },
-      canvas_state: {
-        legend: data.legend ? JSON.parse(JSON.stringify(data.legend)) : [],
-        nodeStates: {}
-      }
-    };
-
-    (data.nodes || []).forEach(function(n) {
-      var newNode = {
-        id: n.id,
-        title: n.title,
-        category: n.category || '',
-        page: n.page || n.island || n.zone || '',
-        desc: n.desc || '',
-        items: []
-      };
-      (n.items || []).forEach(function(it) {
-        if (!it.itemId) it.itemId = generateItemId();
-        newNode.items.push(it);
-      });
-      newData.core_architecture.nodes.push(newNode);
-      newData.canvas_state.nodeStates[n.id] = {
-        x: n.x || 0,
-        y: n.y || 0,
-        color: n.color || '#94A3B8'
-      };
-    });
-
-    (data.edges || []).forEach(function(e) {
-      var fromNode = newData.core_architecture.nodes.find(function(x) { return x.id === e.from; });
-      var sourceItemId = null;
-      if (fromNode && e.fIdx !== undefined && fromNode.items[e.fIdx]) {
-        sourceItemId = fromNode.items[e.fIdx].itemId;
-      }
-      if (!sourceItemId && fromNode && fromNode.items.length > 0) {
-        sourceItemId = fromNode.items[0].itemId;
-      }
-      newData.core_architecture.edges.push({
-        from: e.from,
-        sourceItemId: sourceItemId,
-        to: e.to,
-        label: e.label,
-        type: e.type
-      });
-    });
-
-    data = newData;
-  }
-
-  // Phase 2: pages → sectors rename
-  if (data.core_architecture.pages && !data.core_architecture.sectors) {
-    data.core_architecture.sectors = data.core_architecture.pages;
-    data.core_architecture.pages = [];
-  }
-  if (!data.core_architecture.sectors) data.core_architecture.sectors = [];
-  if (!Array.isArray(data.core_architecture.pages)) data.core_architecture.pages = [];
-
-  // Phase 3: node.page → node.sector
-  (data.core_architecture.nodes || []).forEach(function(n) {
-    if ('page' in n && !('sector' in n)) {
-      n.sector = n.page;
-      delete n.page;
+  if (data.core_architecture) return data; // Already migrated
+  
+  var newData = {
+    core_architecture: {
+      itemTypes: data.itemTypes ? JSON.parse(JSON.stringify(data.itemTypes)) : [],
+      relationTypes: data.relationTypes ? JSON.parse(JSON.stringify(data.relationTypes)) : [],
+      pages: data.pages ? JSON.parse(JSON.stringify(data.pages)) : [],
+      nodes: [],
+      edges: []
+    },
+    canvas_state: {
+      legend: data.legend ? JSON.parse(JSON.stringify(data.legend)) : [],
+      nodeStates: {}
     }
-    if (n.sector === undefined) n.sector = '';
+  };
+
+  // Process nodes
+  (data.nodes || []).forEach(function(n) {
+    var newNode = {
+      id: n.id,
+      title: n.title,
+      category: n.category || '',
+      page: n.page || n.island || n.zone || '',
+      desc: n.desc || '',
+      items: []
+    };
+    
+    // Process items
+    (n.items || []).forEach(function(it) {
+      if (!it.itemId) it.itemId = generateItemId();
+      newNode.items.push(it);
+    });
+    
+    newData.core_architecture.nodes.push(newNode);
+    
+    // Extract canvas state
+    newData.canvas_state.nodeStates[n.id] = {
+      x: n.x || 0,
+      y: n.y || 0,
+      color: n.color || '#94A3B8'
+    };
   });
 
-  // Phase 4: add target_kind to edges
-  (data.core_architecture.edges || []).forEach(function(e) {
-    if (!e.target_kind) e.target_kind = 'component';
+  // Process edges
+  (data.edges || []).forEach(function(e) {
+    var fromNode = newData.core_architecture.nodes.find(function(x) { return x.id === e.from; });
+    var sourceItemId = null;
+    if (fromNode && e.fIdx !== undefined && fromNode.items[e.fIdx]) {
+      sourceItemId = fromNode.items[e.fIdx].itemId;
+    }
+    
+    // Fallback if missing
+    if (!sourceItemId && fromNode && fromNode.items.length > 0) {
+      sourceItemId = fromNode.items[0].itemId;
+    }
+    
+    newData.core_architecture.edges.push({
+      from: e.from,
+      sourceItemId: sourceItemId,
+      to: e.to,
+      label: e.label,
+      type: e.type
+    });
   });
 
-  return data;
+  return newData;
 }
 
 var saved=localStorage.getItem('agora-map-data');
@@ -269,36 +257,15 @@ A.save=function(){
   }
 };
 A.findNode=function(id){return A.data.core_architecture.nodes.find(function(x){return x.id===id;});};
-
-// Sector CRUD (renamed from old Page CRUD)
-A.findSector=function(id){return(A.data.core_architecture.sectors||[]).find(function(x){return x.id===id;});};
-A.addSector=function(s){A.data.core_architecture.sectors.push(s);A.save();};
-A.updateSector=function(id,u){var s=A.findSector(id);if(s)Object.assign(s,u);A.save();};
-A.deleteSector=function(id){
-  // Cascade: delete pages belonging to this sector
-  var pagesToDelete=(A.data.core_architecture.pages||[]).filter(function(p){return p.sector_id===id;});
-  pagesToDelete.forEach(function(p){
-    A.data.core_architecture.nodes.forEach(function(n){if(n.page===p.id)n.page='';});
-    A.data.core_architecture.edges=A.data.core_architecture.edges.filter(function(e){return !(e.target_kind==='page'&&e.to===p.id);});
-  });
-  A.data.core_architecture.pages=A.data.core_architecture.pages.filter(function(p){return p.sector_id!==id;});
-  // Delete sector
-  A.data.core_architecture.sectors=A.data.core_architecture.sectors.filter(function(x){return x.id!==id;});
-  // Clear sector ref from nodes
-  A.data.core_architecture.nodes.forEach(function(n){if(n.sector===id){n.sector='';n.page='';}});
-  A.save();
-};
-
-// Page CRUD (new sense — écran réel à une URL)
 A.findPage=function(id){return(A.data.core_architecture.pages||[]).find(function(x){return x.id===id;});};
-A.addPage=function(p){A.data.core_architecture.pages.push(p);A.save();};
-A.updatePage=function(id,u){var p=A.findPage(id);if(p)Object.assign(p,u);A.save();};
+
+// Page CRUD
+A.addPage=function(isl){A.data.core_architecture.pages.push(isl);A.save();};
+A.updatePage=function(id,u){var isl=A.findPage(id);if(isl)Object.assign(isl,u);A.save();};
 A.deletePage=function(id){
-  A.data.core_architecture.pages=A.data.core_architecture.pages.filter(function(x){return x.id!==id;});
-  // Clear page ref from nodes (they stay in sector, become transverse)
+  A.data.core_architecture.pages=A.data.core_architecture.pages.filter(function(x){return x.id!==id});
+  // Unset page ref from nodes
   A.data.core_architecture.nodes.forEach(function(n){if(n.page===id)n.page='';});
-  // Remove edges targeting this page
-  A.data.core_architecture.edges=A.data.core_architecture.edges.filter(function(e){return !(e.target_kind==='page'&&e.to===id);});
   A.save();
 };
 
@@ -325,8 +292,8 @@ A.moveItem=function(nid,from,to){
 
 // Edge CRUD
 A.addEdge=function(e){
-  if(!e.target_kind) e.target_kind='component';
-  var exists=A.data.core_architecture.edges.some(function(x){return x.from===e.from&&x.sourceItemId===e.sourceItemId&&x.to===e.to&&x.target_kind===e.target_kind;});
+  // Prevent duplicate edges
+  var exists=A.data.core_architecture.edges.some(function(x){return x.from===e.from&&x.sourceItemId===e.sourceItemId&&x.to===e.to;});
   if(exists)return false;
   A.data.core_architecture.edges.push(e);A.save();return true;
 };
@@ -390,19 +357,14 @@ A.exportSave=function(){
 A.exportAI=function(){
   var ca=A.data.core_architecture;
 
-  // Sectors index
-  var sectorsById={};
-  (ca.sectors||[]).forEach(function(s){sectorsById[s.id]=s.title;});
-
   // Pages index
   var pagesById={};
   (ca.pages||[]).forEach(function(p){pagesById[p.id]=p.title;});
 
-  // Infer parent from Tab edges
+  // Infer parent from Tab edges: if node B is target of a Tab item from node A, B's parent = A
   var parentMap={};
   (ca.edges||[]).forEach(function(e){
     if(e.from===e.to)return;
-    if(e.target_kind==='page')return;
     var fromNode=ca.nodes.find(function(n){return n.id===e.from;});
     if(!fromNode)return;
     var srcItem=fromNode.items.find(function(it){return it.itemId===e.sourceItemId;});
@@ -427,50 +389,38 @@ A.exportAI=function(){
     return{type:rt.type,label:rt.label};
   });
 
-  // Sectors
-  var sectors=(ca.sectors||[]).map(function(s){
-    return{id:s.id,name:s.title};
-  });
-
-  // Pages (new sense)
-  var pages=(ca.pages||[]).map(function(p){
-    var obj={id:p.id,name:p.title};
-    if(p.sector_id&&sectorsById[p.sector_id])obj.sector=sectorsById[p.sector_id];
-    if(p.url)obj.url=p.url;
-    if(p.access)obj.access=p.access;
-    return obj;
-  });
-
-  // Components
+  // Components (nodes without h3 separators, clean field names)
   var components=(ca.nodes||[]).map(function(n){
     var obj={
       id:n.id,
       name:n.title,
       description:n.desc||''
     };
-    if(n.sector&&sectorsById[n.sector])obj.sector=sectorsById[n.sector];
     if(n.page&&pagesById[n.page])obj.page=pagesById[n.page];
-    else obj.page=null;
     if(parentMap[n.id])obj.parent=parentMap[n.id];
+    if(n.modes&&n.modes.length)obj.modes=n.modes;
+    if(n.default_mode)obj.default_mode=n.default_mode;
+    if(n.section_role)obj.section_role=n.section_role;
     obj.elements=(n.items||[])
       .filter(function(it){return it.t!=='h3';})
       .map(function(it){
-        return{
+        var el={
           type:it.t.replace(/^\+/,''),
           name:it.n
         };
+        if(it.visible_in_modes&&it.visible_in_modes.length)el.visible_in_modes=it.visible_in_modes;
+        return el;
       });
     return obj;
   });
 
-  // Flows
+  // Flows (edges — resolved names instead of internal IDs)
   var flows=(ca.edges||[]).map(function(e){
     var fromNode=ca.nodes.find(function(n){return n.id===e.from;});
     var srcItem=fromNode?fromNode.items.find(function(it){return it.itemId===e.sourceItemId;}):null;
     var flow={
       from:e.from,
       to:e.to,
-      target_kind:e.target_kind||'component',
       trigger:srcItem?srcItem.n:''
     };
     if(e.type)flow.interaction_type=e.type;
@@ -479,25 +429,22 @@ A.exportAI=function(){
   });
 
   var aiExport={
-    _description:'Architecture export — optimized for AI. No visual/positional data. Sectors group pages. Pages are real screens at URLs. Components describe UI blocks and their elements. Flows describe navigation triggers between components or pages.',
+    _description:'Architecture export — optimized for AI. No visual/positional data. Components describe UI screens and their elements. Flows describe navigation triggers between components.',
     _glossary:{
-      sector:"Un grand contexte logique de l'app (ex: Vitrine publique, Authentification, Portail connecté). Un secteur regroupe plusieurs pages.",
-      page:"Un écran réellement affiché à une URL donnée. Une page appartient à un secteur. Plusieurs pages d'un même secteur peuvent partager des composants transverses (ex: une sidebar commune).",
-      target_kind:"Indique la nature de la cible d'un flow. 'component' = la cible est un bloc d'UI précis (souvent une navigation intra-page comme un onglet ou une overlay). 'page' = la cible est un écran complet (navigation inter-pages, changement d'URL).",
-      transverse_component:"Un composant rattaché à un secteur mais pas à une page précise. Il est partagé entre toutes les pages de ce secteur (ex: une sidebar plateforme visible sur toutes les pages du portail).",
-      element:"Une brique interne d'un composant : bouton, champ, lien, média, etc.",
-      flow:"Un lien de navigation entre un élément source et un composant ou page cible."
+      modes:"Un composant peut avoir plusieurs modes d'affichage (par exemple 'view' pour la consultation et 'edit' pour l'édition). Le mode actif détermine quels éléments du composant sont visibles. Voir le champ visible_in_modes sur les éléments.",
+      default_mode:"Le mode dans lequel le composant est rendu par défaut lors de son premier affichage.",
+      section_role:"Désigne le rôle fonctionnel d'une section du profil Agora. 'conversion' = sections orientées action commerciale (Shop, Agenda, Événement), affichées en priorité sur Accueil. 'content' = sections de contenu récurrent (News, Vidéos), affichées après les sections de conversion. 'identity' = sections de présentation (Histoire, Portfolio), affichées en dernier.",
+      visible_in_modes:"Liste des modes du composant parent dans lesquels cet élément est visible. Si absent, l'élément est visible dans tous les modes."
     },
     _conventions:[
-      "Un flow avec target_kind='page' modélise un changement d'URL (routing). Un flow avec target_kind='component' modélise une navigation interne à une page (changement d'état React, ouverture d'overlay, sélection d'onglet, etc.). Cette distinction est essentielle pour générer le code : routing vs state management.",
-      "Les composants transverses (sans champ page) sont visibles sur toutes les pages de leur secteur parent.",
-      "Un composant peut contenir des sections (h3) qui servent de séparateurs visuels, non exportés ici.",
-      "Le champ parent indique qu'un composant est affiché en sous-composant (via onglet) d'un autre."
+      "Sur le profil public d'Agora, l'ordre d'affichage des sections est : sections de rôle 'conversion' d'abord, puis 'content', puis 'identity'. Cet ordre n'est pas modifiable par l'utilisateur.",
+      "Une section peut être publiée ou dépubliée sans perdre son contenu. La dépublication la rend invisible aux visiteurs mais ne supprime aucune donnée.",
+      "Le profil et son interface d'édition partagent le même rendu visuel de fond. Les éléments d'édition (boutons modifier, bordures de survol) sont visibles uniquement quand le mode actif est 'edit'.",
+      "Les éléments sans visible_in_modes sont visibles dans tous les modes du composant parent."
     ],
     element_types:elementTypes,
     interaction_types:interactionTypes,
-    sectors:sectors,
-    pages:pages,
+    pages:(ca.pages||[]).map(function(p){return{id:p.id,name:p.title};}),
     components:components,
     flows:flows
   };
@@ -527,8 +474,6 @@ A.importJSON=function(j){
     if(!A.data.canvas_state)A.data.canvas_state={legend:[],nodeStates:{}};
     if(!A.data.canvas_state.nodeStates)A.data.canvas_state.nodeStates={};
     if(!A.data.canvas_state.legend)A.data.canvas_state.legend=[];
-    if(!A.data.core_architecture.sectors)A.data.core_architecture.sectors=[];
-    if(!Array.isArray(A.data.core_architecture.pages))A.data.core_architecture.pages=[];
     var ns=A.data.canvas_state.nodeStates;
     var cx=80,cy=80;
     A.data.core_architecture.nodes.forEach(function(n){
@@ -540,11 +485,9 @@ A.importJSON=function(j){
         if(fn&&fn.items[e.fIdx])e.sourceItemId=fn.items[e.fIdx].itemId;
         delete e.fIdx;
       }
-      if(!e.target_kind)e.target_kind='component';
     });
     A.data.core_architecture.nodes.forEach(function(n){
       n.items.forEach(function(it){if(!it.itemId)it.itemId=generateItemId();});
-      if(n.sector===undefined)n.sector='';
     });
     A.save();return true;
   }catch(e){console.error("Import failed:",e);return false;}
@@ -557,6 +500,7 @@ A.toast=function(m,t){var c=document.getElementById('toast-container');var d=doc
 // ── Helpers ──
 A.getItemColor=function(t){
   var types=A.data.core_architecture.itemTypes||[];
+  // Normalize: strip leading '+' for comparison
   var clean=t.replace(/^\+/,'');
   for(var ci=0;ci<types.length;ci++){
     var cat=types[ci];
@@ -568,6 +512,7 @@ A.getItemColor=function(t){
   return'#94A3B8';
 };
 
+// Get all item types as flat list (for dropdowns)
 A.getAllItemTags=function(){
   var result=[];
   (A.data.core_architecture.itemTypes||[]).forEach(function(cat){
@@ -580,9 +525,6 @@ A.getAllItemTags=function(){
 
 A.escHtml=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');};
 
-window.addEventListener('beforeunload',function(){A.save();});
-})();
-
 A.getRelationColor=function(type){
   var res='#94A3B8';
   if(A.data.core_architecture.relationTypes){
@@ -591,3 +533,7 @@ A.getRelationColor=function(type){
   }
   return res;
 };
+
+// ── Auto-save on page unload ──
+window.addEventListener('beforeunload',function(){A.save();});
+})();

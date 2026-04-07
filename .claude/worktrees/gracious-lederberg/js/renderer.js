@@ -29,80 +29,50 @@ A.getNodeHeight=function(n, H, IH){
 };
 
 A.computeEdgePath=function(e){
-  var n1=A.findNode(e.from);
-  if(!n1)return null;
-
+  var n1=A.findNode(e.from), n2=A.findNode(e.to); 
+  if(!n1||!n2)return null;
+  
   var W=A.NODE_W, H=A.HEADER_H, IH=A.ITEM_H;
-  var d=A.data.core_architecture;
   var st1 = A.getState(n1.id);
+  var st2 = A.getState(n2.id);
 
   // Source computation
   var fIdx = Math.max(0, n1.items.findIndex(function(it){ return it.itemId === e.sourceItemId; }));
-
+  
   var yOffset = 0;
   for(var i=0; i<fIdx; i++){ yOffset += A.getItemHeight(n1.items[i], IH); }
   var currentItemHeight = A.getItemHeight(n1.items[fIdx], IH);
   var y1 = st1.y + H + yOffset + (currentItemHeight/2);
 
   // Target computation
-  var tx, ty, tw, th, isBox=false;
-
-  if(e.target_kind==='page'){
-    // Target is a page (new sense — écran réel)
-    var targetPage=A.findPage(e.to);
-    if(!targetPage)return null;
-    var pageMembers=d.nodes.filter(function(n){return n.page===e.to;});
-    if(!pageMembers.length)return null;
-
-    var PAGE_PAD=16, PAGE_TOP=28;
+  var tx, ty, tw, th;
+  var samePage = n1.page === n2.page && !!n1.page;
+  var n2Page = (n2.page && !samePage) ? A.findPage(n2.page) : null;
+  
+  if(n2Page){
+    var members=A.data.core_architecture.nodes.filter(function(n){return n.page===n2Page.id;});
+    var PAD=24,TOP=36;
     var minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
-    pageMembers.forEach(function(n){
-      var nSt=A.getState(n.id);
+    members.forEach(function(n){
+      var nSt = A.getState(n.id);
       var nh=A.getNodeHeight(n, H, IH);
-      if(nSt.x<minX)minX=nSt.x;
-      if(nSt.y<minY)minY=nSt.y;
-      if(nSt.x+W>maxX)maxX=nSt.x+W;
-      if(nSt.y+nh>maxY)maxY=nSt.y+nh;
+      if(nSt.x<minX) minX=nSt.x;
+      if(nSt.y<minY) minY=nSt.y;
+      if(nSt.x+W>maxX) maxX=nSt.x+W;
+      if(nSt.y+nh>maxY) maxY=nSt.y+nh;
     });
-    tx=minX-PAGE_PAD; ty=minY-PAGE_TOP;
-    tw=maxX-minX+2*PAGE_PAD; th=maxY-minY+PAGE_TOP+PAGE_PAD;
-    isBox=true;
+    tx=minX-PAD; ty=minY-TOP; tw=maxX-minX+2*PAD; th=maxY-minY+TOP+PAD;
   } else {
-    // Target is a component (node)
-    var n2=A.findNode(e.to);
-    if(!n2)return null;
-    var st2=A.getState(n2.id);
-
-    var sameSector = n1.sector === n2.sector && !!n1.sector;
-    var n2Sector = (n2.sector && !sameSector) ? A.findSector(n2.sector) : null;
-
-    if(n2Sector){
-      var members=d.nodes.filter(function(n){return n.sector===n2Sector.id;});
-      var PAD=24,TOP=36;
-      var minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
-      members.forEach(function(n){
-        var nSt = A.getState(n.id);
-        var nh=A.getNodeHeight(n, H, IH);
-        if(nSt.x<minX) minX=nSt.x;
-        if(nSt.y<minY) minY=nSt.y;
-        if(nSt.x+W>maxX) maxX=nSt.x+W;
-        if(nSt.y+nh>maxY) maxY=nSt.y+nh;
-      });
-      tx=minX-PAD; ty=minY-TOP; tw=maxX-minX+2*PAD; th=maxY-minY+TOP+PAD;
-      isBox=true;
-    } else {
-      tx=st2.x; ty=st2.y; tw=W; th=A.getNodeHeight(n2, H, IH);
-    }
-
-    // Self-loop
-    if(n1.id===n2.id && !n2Sector){
-      var x = st1.x + W;
-      var y2 = ty + th/2;
-      return 'M' + x + ',' + y1 + ' C' + (x+55) + ',' + y1 + ' ' + (x+55) + ',' + y2 + ' ' + x + ',' + y2;
-    }
+    tx=st2.x; ty=st2.y; tw=W; th=H;
   }
 
-  var y2 = isBox ? ty + 16 : ty + th/2;
+  var y2 = n2Page ? ty + 16 : ty + th/2; 
+
+  // Self-loop
+  if(n1.id===n2.id && !n2Page){
+    var x = st1.x + W;
+    return 'M' + x + ',' + y1 + ' C' + (x+55) + ',' + y1 + ' ' + (x+55) + ',' + y2 + ' ' + x + ',' + y2;
+  }
 
   var srcRight = st1.x + W, srcLeft = st1.x;
   var tgtCx = tx + tw/2;
@@ -117,16 +87,15 @@ A.computeEdgePath=function(e){
 
 A.render=function(){
   var d=A.data, W=A.NODE_W, H=A.HEADER_H, IH=A.ITEM_H;
-  if(!d.core_architecture) return;
+  if(!d.core_architecture) return; // Sécurité si données corrompues
 
   var s='<svg xmlns="http://www.w3.org/2000/svg" viewBox="-10000 -10000 30000 30000" style="display:block; overflow:visible; position:absolute; left:-10000px; top:-10000px; width:30000px; height:30000px;">';
   s+='<defs><marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#64748B"/></marker>';
   s+='<marker id="arrHl" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 Z" fill="#F8FAFC"/></marker></defs>';
 
-  // ── Sector boxes (dashed, outer) ──
   var ISL_PAD=24, ISL_TOP=36;
-  (d.core_architecture.sectors||[]).forEach(function(sector){
-    var members=d.core_architecture.nodes.filter(function(n){return n.sector===sector.id;});
+  (d.core_architecture.pages||[]).forEach(function(isl){
+    var members=d.core_architecture.nodes.filter(function(n){return n.page===isl.id;});
     if(!members.length)return;
     var minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
     members.forEach(function(n){
@@ -139,46 +108,13 @@ A.render=function(){
     });
     var ix=minX-ISL_PAD, iy=minY-ISL_TOP;
     var iw=maxX-minX+2*ISL_PAD, ih=maxY-minY+ISL_TOP+ISL_PAD;
-    var col=sector.color||'#475569';
-    s+='<g class="sector-box" data-sector="'+sector.id+'" pointer-events="none">';
+    var col=isl.color||'#475569';
+    s+='<g class="page" data-page="'+isl.id+'" pointer-events="none">';
     s+='<rect x="'+ix+'" y="'+iy+'" width="'+iw+'" height="'+ih+'" rx="14" fill="'+col+'" opacity="0.06" stroke="'+col+'" stroke-width="1.5" stroke-opacity="0.25" stroke-dasharray="6 3" pointer-events="none"/>';
-    s+='<text x="'+(ix+12)+'" y="'+(iy+22)+'" font-size="12" font-weight="800" fill="'+col+'" font-family="Inter,sans-serif" opacity="0.6" letter-spacing="0.8" text-transform="uppercase" pointer-events="none">'+A.escHtml(sector.title).toUpperCase()+'</text>';
+    s+='<text x="'+(ix+12)+'" y="'+(iy+22)+'" font-size="12" font-weight="800" fill="'+col+'" font-family="Inter,sans-serif" opacity="0.6" letter-spacing="0.8" text-transform="uppercase" pointer-events="none">'+A.escHtml(isl.title).toUpperCase()+'</text>';
     s+='</g>';
   });
 
-  // ── Page boxes (solid, inner, subtler) ──
-  var PAGE_PAD=16, PAGE_TOP=28;
-  (d.core_architecture.pages||[]).forEach(function(page){
-    var members=d.core_architecture.nodes.filter(function(n){return n.page===page.id;});
-    if(!members.length)return;
-
-    // Skip drawing if only 1 component and alone in sector
-    var sectorMembers=d.core_architecture.nodes.filter(function(n){return n.sector===page.sector_id;});
-    if(members.length===1 && sectorMembers.length===1)return;
-
-    var minX=Infinity, minY=Infinity, maxX=-Infinity, maxY=-Infinity;
-    members.forEach(function(n){
-      var st = A.getState(n.id);
-      var nh = A.getNodeHeight(n, H, IH);
-      if(st.x<minX) minX=st.x;
-      if(st.y<minY) minY=st.y;
-      if(st.x+W>maxX) maxX=st.x+W;
-      if(st.y+nh>maxY) maxY=st.y+nh;
-    });
-    var px=minX-PAGE_PAD, py=minY-PAGE_TOP;
-    var pw=maxX-minX+2*PAGE_PAD, ph=maxY-minY+PAGE_TOP+PAGE_PAD;
-
-    // Get sector color
-    var sector=A.findSector(page.sector_id);
-    var col=sector&&sector.color?sector.color:'#475569';
-
-    s+='<g class="page-box" data-page="'+page.id+'" pointer-events="none">';
-    s+='<rect x="'+px+'" y="'+py+'" width="'+pw+'" height="'+ph+'" rx="10" fill="none" stroke="'+col+'" stroke-width="1" stroke-opacity="0.4" pointer-events="none"/>';
-    s+='<text x="'+(px+10)+'" y="'+(py+16)+'" font-size="10" font-weight="700" fill="'+col+'" font-family="Inter,sans-serif" opacity="0.45" letter-spacing="0.5" pointer-events="none">'+A.escHtml(page.title)+'</text>';
-    s+='</g>';
-  });
-
-  // ── Edges ──
   (d.core_architecture.edges||[]).forEach(function(e,ei){
     var p=A.computeEdgePath(e);if(!p)return;
     var col = e.type ? A.getRelationColor(e.type) : "#475569";
@@ -197,7 +133,6 @@ A.render=function(){
     }
   });
 
-  // ── Nodes ──
   (d.core_architecture.nodes||[]).forEach(function(n){
     var st = A.getState(n.id);
     var h=A.getNodeHeight(n, H, IH);
@@ -208,7 +143,7 @@ A.render=function(){
 
     s+='<rect class="node-header-bg" data-action="drag" data-node="'+n.id+'" x="'+st.x+'" y="'+st.y+'" width="'+W+'" height="'+H+'" fill="transparent" rx="8"/>';
     s+='<text x="'+(st.x+14)+'" y="'+(st.y+22)+'" font-size="13" font-weight="700" fill="white" font-family="Inter,sans-serif" pointer-events="none">'+A.escHtml(n.title)+'</text>';
-
+    
     var yOffset = 0;
     n.items.forEach(function(item,i){
       var currentItemHeight = A.getItemHeight(item, IH);
@@ -244,48 +179,14 @@ A.renderLegend=function(){
   });c.innerHTML=h;
 };
 
-A.renderSectorsLegend=function(){
-  var c=document.getElementById('sectors-container');if(!c)return;
-  var sectors=A.data.core_architecture.sectors||[];
-  if(!sectors.length){c.innerHTML='<span class="empty-hint">Aucun secteur</span>';return;}
-  var h='';
-  sectors.forEach(function(sector){
-    var pageCount=(A.data.core_architecture.pages||[]).filter(function(p){return p.sector_id===sector.id;}).length;
-    h+='<div class="ild"><div class="ildd" style="border-color:'+(sector.color||'#475569')+';"></div>'+A.escHtml(sector.title)+'<span class="ild-count" style="margin-left:auto;">'+pageCount+' pages</span></div>';
-  });
-  c.innerHTML=h;
-};
-
-A.renderPagesWidget=function(){
+A.renderPagesLegend=function(){
   var c=document.getElementById('pages-container');if(!c)return;
   var pages=A.data.core_architecture.pages||[];
-  if(!pages.length){c.innerHTML='<span class="empty-hint">Aucune page</span>';return;}
-
-  // Group by sector
-  var bySector={};
-  var sectorOrder=[];
-  pages.forEach(function(p){
-    var sid=p.sector_id||'_none';
-    if(!bySector[sid]){bySector[sid]=[];sectorOrder.push(sid);}
-    bySector[sid].push(p);
-  });
-
+  if(!pages.length){c.innerHTML='<span class="pages-empty">Aucune page</span>';return;}
   var h='';
-  sectorOrder.forEach(function(sid){
-    var sector=A.findSector(sid);
-    var sectorName=sector?sector.title:'Sans secteur';
-    var sectorColor=sector&&sector.color?sector.color:'#475569';
-    h+='<div class="pages-group">';
-    h+='<div class="pages-group-title" style="color:'+sectorColor+';">'+A.escHtml(sectorName)+'</div>';
-    bySector[sid].forEach(function(p){
-      var compCount=A.data.core_architecture.nodes.filter(function(n){return n.page===p.id;}).length;
-      h+='<div class="page-entry">';
-      h+='<span class="page-entry-title">'+A.escHtml(p.title)+'</span>';
-      if(p.url) h+='<span class="page-entry-url">'+A.escHtml(p.url)+'</span>';
-      h+='<span class="ild-count">'+compCount+'</span>';
-      h+='</div>';
-    });
-    h+='</div>';
+  pages.forEach(function(isl){
+    var count=A.data.core_architecture.nodes.filter(function(n){return n.page===isl.id;}).length;
+    h+='<div class="ild"><div class="ildd" style="border-color:'+(isl.color||'#475569')+';"></div>'+A.escHtml(isl.title)+'<span class="ild-count" style="margin-left:auto;">'+count+' nœuds</span></div>';
   });
   c.innerHTML=h;
 };
