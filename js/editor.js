@@ -191,6 +191,9 @@ A.openPanel=function(nid){
       h+='<span class="pi-tag" style="background:'+(item.t==='h3'?'#475569':A.getItemColor(item.t))+';">'+A.escHtml(item.t)+'</span>';
       h+='<input class="pi-name" value="'+A.escHtml(item.n)+'" data-idx="'+i+'" onblur="Agora.panelSaveItem('+i+')">';
       h+='<div class="pi-btns">';
+      if(item.t!=='h3'){
+        h+='<button class="pi-btn" onclick="Agora.openVisibilityPopup(event,'+i+')" title="Visibilité par mode" style="font-size:11px;opacity:0.6;">👁</button>';
+      }
       h+='<button class="pi-btn pi-btn-del" onclick="Agora.panelDelItem('+i+')" title="Supprimer">✕</button>';
       h+='</div></div>';
     });
@@ -264,6 +267,42 @@ A.openPanel=function(nid){
     if(!hasConn)h+='<div style="color:#64748B;font-size:11px;padding:6px 0;text-align:center;">Aucune connexion sortante</div>';
   h+='</div>';
 
+  // --- ADVANCED METADATA (collapsible) ---
+  h+='<div style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.06);padding-top:14px;">';
+  h+='<button class="btn btn-ghost" style="width:100%;text-align:left;font-size:12px;color:#94A3B8;" onclick="Agora.toggleAdvMeta()" id="adv-meta-toggle">▶ Métadonnées avancées</button>';
+  h+='<div id="adv-meta-body" style="display:none;margin-top:10px;">';
+
+  // Modes supportés (multi-select checkboxes)
+  var curModes=n.modes||[];
+  h+='<div class="form-group"><label class="form-label">Modes supportés</label>';
+  h+='<div style="display:flex;gap:12px;">';
+  h+='<label style="display:flex;align-items:center;gap:4px;color:#CBD5E1;font-size:12px;cursor:pointer;">';
+  h+='<input type="checkbox" id="pn-mode-view" '+(curModes.indexOf('view')!==-1?'checked':'')+' onchange="Agora.panelSaveModes()"> view</label>';
+  h+='<label style="display:flex;align-items:center;gap:4px;color:#CBD5E1;font-size:12px;cursor:pointer;">';
+  h+='<input type="checkbox" id="pn-mode-edit" '+(curModes.indexOf('edit')!==-1?'checked':'')+' onchange="Agora.panelSaveModes()"> edit</label>';
+  h+='</div></div>';
+
+  // Default mode
+  var defMode=n.default_mode||'';
+  h+='<div class="form-group"><label class="form-label">Mode par défaut</label>';
+  h+='<select class="form-input" id="pn-default-mode" onchange="Agora.panelSaveDefaultMode()" '+(curModes.length===0?'disabled':'')+' style="font-size:12px;">';
+  h+='<option value="">— Aucun —</option>';
+  if(curModes.indexOf('view')!==-1) h+='<option value="view"'+(defMode==='view'?' selected':'')+'>view</option>';
+  if(curModes.indexOf('edit')!==-1) h+='<option value="edit"'+(defMode==='edit'?' selected':'')+'>edit</option>';
+  h+='</select></div>';
+
+  // Section role
+  var secRole=n.section_role||'';
+  h+='<div class="form-group"><label class="form-label">Rôle de section</label>';
+  h+='<select class="form-input" id="pn-section-role" onchange="Agora.panelSaveSectionRole()" style="font-size:12px;">';
+  h+='<option value="">— Aucun —</option>';
+  h+='<option value="conversion"'+(secRole==='conversion'?' selected':'')+'>Conversion</option>';
+  h+='<option value="content"'+(secRole==='content'?' selected':'')+'>Contenu</option>';
+  h+='<option value="identity"'+(secRole==='identity'?' selected':'')+'>Identité</option>';
+  h+='</select></div>';
+
+  h+='</div></div>';
+
   b.innerHTML=h;
   p.classList.add('open');
 
@@ -280,6 +319,98 @@ A.closePanel=function(){
   document.getElementById('edit-panel').classList.remove('open');
   A._editingPanelNode=null;
   if(A.clearGhostMode) A.clearGhostMode();
+};
+
+// ══ ADVANCED METADATA HANDLERS ══
+A.toggleAdvMeta=function(){
+  var body=document.getElementById('adv-meta-body');
+  var btn=document.getElementById('adv-meta-toggle');
+  if(body.style.display==='none'){body.style.display='block';btn.textContent='▼ Métadonnées avancées';}
+  else{body.style.display='none';btn.textContent='▶ Métadonnées avancées';}
+};
+
+A.panelSaveModes=function(){
+  var n=A.findNode(A._editingPanelNode);if(!n)return;
+  var modes=[];
+  if(document.getElementById('pn-mode-view').checked)modes.push('view');
+  if(document.getElementById('pn-mode-edit').checked)modes.push('edit');
+  if(modes.length>0){n.modes=modes;}else{delete n.modes;delete n.default_mode;}
+  // Update default_mode select
+  var sel=document.getElementById('pn-default-mode');
+  sel.disabled=modes.length===0;
+  sel.innerHTML='<option value="">— Aucun —</option>';
+  modes.forEach(function(m){sel.innerHTML+='<option value="'+m+'">'+m+'</option>';});
+  if(n.default_mode&&modes.indexOf(n.default_mode)!==-1){sel.value=n.default_mode;}
+  else{delete n.default_mode;sel.value='';}
+  A.save();
+};
+
+A.panelSaveDefaultMode=function(){
+  var n=A.findNode(A._editingPanelNode);if(!n)return;
+  var v=document.getElementById('pn-default-mode').value;
+  if(v){n.default_mode=v;}else{delete n.default_mode;}
+  A.save();
+};
+
+A.panelSaveSectionRole=function(){
+  var n=A.findNode(A._editingPanelNode);if(!n)return;
+  var v=document.getElementById('pn-section-role').value;
+  if(v){n.section_role=v;}else{delete n.section_role;}
+  A.save();
+};
+
+// ══ ITEM VISIBILITY POPUP ══
+A.openVisibilityPopup=function(evt,idx){
+  evt.stopPropagation();
+  // Close any existing popup
+  var old=document.getElementById('vis-popup');if(old)old.remove();
+
+  var n=A.findNode(A._editingPanelNode);if(!n||!n.items[idx])return;
+  var item=n.items[idx];
+  var vim=item.visible_in_modes;
+  var viewChecked=!vim||vim.indexOf('view')!==-1;
+  var editChecked=!vim||vim.indexOf('edit')!==-1;
+
+  var pop=document.createElement('div');
+  pop.id='vis-popup';
+  pop.style.cssText='position:absolute;z-index:9999;background:#1E293B;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 14px;box-shadow:0 4px 12px rgba(0,0,0,0.4);font-size:12px;color:#CBD5E1;';
+  pop.innerHTML='<div style="font-weight:600;margin-bottom:8px;color:#F1F5F9;">Visible en mode</div>'
+    +'<label style="display:flex;align-items:center;gap:6px;margin-bottom:4px;cursor:pointer;">'
+    +'<input type="checkbox" data-mode="view" '+(viewChecked?'checked':'')+' onchange="Agora.saveVisibility('+idx+')"> view</label>'
+    +'<label style="display:flex;align-items:center;gap:6px;cursor:pointer;">'
+    +'<input type="checkbox" data-mode="edit" '+(editChecked?'checked':'')+' onchange="Agora.saveVisibility('+idx+')"> edit</label>';
+
+  // Position near the button
+  var btn=evt.currentTarget;
+  var rect=btn.getBoundingClientRect();
+  var panel=document.getElementById('edit-panel');
+  var panelRect=panel.getBoundingClientRect();
+  pop.style.top=(rect.bottom-panelRect.top+panel.scrollTop+4)+'px';
+  pop.style.right='20px';
+
+  // Append inside panel body for positioning
+  var body=document.getElementById('panel-body');
+  body.style.position='relative';
+  body.appendChild(pop);
+
+  // Close on outside click
+  setTimeout(function(){
+    document.addEventListener('click',function closer(e2){
+      if(!pop.contains(e2.target)){pop.remove();document.removeEventListener('click',closer);}
+    });
+  },0);
+};
+
+A.saveVisibility=function(idx){
+  var n=A.findNode(A._editingPanelNode);if(!n||!n.items[idx])return;
+  var pop=document.getElementById('vis-popup');if(!pop)return;
+  var checks=pop.querySelectorAll('input[type="checkbox"]');
+  var modes=[];
+  checks.forEach(function(c){if(c.checked)modes.push(c.getAttribute('data-mode'));});
+  // If both checked (or none — treat as "all"), remove the field
+  if(modes.length===2||modes.length===0){delete n.items[idx].visible_in_modes;}
+  else{n.items[idx].visible_in_modes=modes;}
+  A.save();
 };
 
 A.hoverEdge = function(ei){

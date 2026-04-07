@@ -452,13 +452,18 @@ A.exportAI=function(){
     if(n.page&&pagesById[n.page])obj.page=pagesById[n.page];
     else obj.page=null;
     if(parentMap[n.id])obj.parent=parentMap[n.id];
+    if(n.modes&&n.modes.length)obj.modes=n.modes;
+    if(n.default_mode)obj.default_mode=n.default_mode;
+    if(n.section_role)obj.section_role=n.section_role;
     obj.elements=(n.items||[])
       .filter(function(it){return it.t!=='h3';})
       .map(function(it){
-        return{
+        var el={
           type:it.t.replace(/^\+/,''),
           name:it.n
         };
+        if(it.visible_in_modes&&it.visible_in_modes.length)el.visible_in_modes=it.visible_in_modes;
+        return el;
       });
     return obj;
   });
@@ -479,21 +484,7 @@ A.exportAI=function(){
   });
 
   var aiExport={
-    _description:'Architecture export — optimized for AI. No visual/positional data. Sectors group pages. Pages are real screens at URLs. Components describe UI blocks and their elements. Flows describe navigation triggers between components or pages.',
-    _glossary:{
-      sector:"Un grand contexte logique de l'app (ex: Vitrine publique, Authentification, Portail connecté). Un secteur regroupe plusieurs pages.",
-      page:"Un écran réellement affiché à une URL donnée. Une page appartient à un secteur. Plusieurs pages d'un même secteur peuvent partager des composants transverses (ex: une sidebar commune).",
-      target_kind:"Indique la nature de la cible d'un flow. 'component' = la cible est un bloc d'UI précis (souvent une navigation intra-page comme un onglet ou une overlay). 'page' = la cible est un écran complet (navigation inter-pages, changement d'URL).",
-      transverse_component:"Un composant rattaché à un secteur mais pas à une page précise. Il est partagé entre toutes les pages de ce secteur (ex: une sidebar plateforme visible sur toutes les pages du portail).",
-      element:"Une brique interne d'un composant : bouton, champ, lien, média, etc.",
-      flow:"Un lien de navigation entre un élément source et un composant ou page cible."
-    },
-    _conventions:[
-      "Un flow avec target_kind='page' modélise un changement d'URL (routing). Un flow avec target_kind='component' modélise une navigation interne à une page (changement d'état React, ouverture d'overlay, sélection d'onglet, etc.). Cette distinction est essentielle pour générer le code : routing vs state management.",
-      "Les composants transverses (sans champ page) sont visibles sur toutes les pages de leur secteur parent.",
-      "Un composant peut contenir des sections (h3) qui servent de séparateurs visuels, non exportés ici.",
-      "Le champ parent indique qu'un composant est affiché en sous-composant (via onglet) d'un autre."
-    ],
+    _description:'Architecture export — optimized for AI. No visual/positional data. Components describe UI screens and their elements. Flows describe navigation triggers between components.',
     element_types:elementTypes,
     interaction_types:interactionTypes,
     sectors:sectors,
