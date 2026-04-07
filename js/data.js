@@ -572,8 +572,6 @@ A.getAllItemTags=function(){
 A.escHtml=function(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');};
 
 window.addEventListener('beforeunload',function(){A.save();});
-})();
-
 A.getRelationColor=function(type){
   var res='#94A3B8';
   if(A.data.core_architecture.relationTypes){
@@ -582,3 +580,5 @@ A.getRelationColor=function(type){
   }
   return res;
 };
+
+})();
